@@ -22,63 +22,63 @@ Partial Class Principal
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.lblTitle = New System.Windows.Forms.Label()
+        Me.lblVersion = New System.Windows.Forms.Label()
+        Me.lblCloseTip = New System.Windows.Forms.Label()
+        Me.lblCountShieldedFiles = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.btnConfig = New System.Windows.Forms.Button()
-        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
-        Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
-        Me.btnAdd = New System.Windows.Forms.Button()
-        Me.btnRemove = New System.Windows.Forms.Button()
-        Me.btnOpen = New System.Windows.Forms.Button()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.btnRename = New System.Windows.Forms.Button()
+        Me.btnOpen = New System.Windows.Forms.Button()
+        Me.btnRemove = New System.Windows.Forms.Button()
+        Me.btnAdd = New System.Windows.Forms.Button()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.lnklblGuide = New System.Windows.Forms.LinkLabel()
+        Me.lnklblInformation = New System.Windows.Forms.LinkLabel()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Label1
+        'lblTitle
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(12, 9)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(341, 39)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Protector de Archivos"
+        Me.lblTitle.AutoSize = True
+        Me.lblTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTitle.Location = New System.Drawing.Point(12, 9)
+        Me.lblTitle.Name = "lblTitle"
+        Me.lblTitle.Size = New System.Drawing.Size(331, 38)
+        Me.lblTitle.TabIndex = 0
+        Me.lblTitle.Text = "Protector de Archivos"
         '
-        'Label2
+        'lblVersion
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.ForeColor = System.Drawing.Color.Gray
-        Me.Label2.Location = New System.Drawing.Point(16, 48)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(108, 17)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Version: 0.0.0.0"
+        Me.lblVersion.AutoSize = True
+        Me.lblVersion.ForeColor = System.Drawing.Color.Gray
+        Me.lblVersion.Location = New System.Drawing.Point(16, 48)
+        Me.lblVersion.Name = "lblVersion"
+        Me.lblVersion.Size = New System.Drawing.Size(108, 17)
+        Me.lblVersion.TabIndex = 1
+        Me.lblVersion.Text = "Version: 0.0.0.0"
         '
-        'Label3
+        'lblCloseTip
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.ForeColor = System.Drawing.Color.Gray
-        Me.Label3.Location = New System.Drawing.Point(648, 9)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(222, 17)
-        Me.Label3.TabIndex = 2
-        Me.Label3.Text = "Siempre cierrame con el boton /X\"
+        Me.lblCloseTip.AutoSize = True
+        Me.lblCloseTip.ForeColor = System.Drawing.Color.Gray
+        Me.lblCloseTip.Location = New System.Drawing.Point(648, 9)
+        Me.lblCloseTip.Name = "lblCloseTip"
+        Me.lblCloseTip.Size = New System.Drawing.Size(222, 17)
+        Me.lblCloseTip.TabIndex = 2
+        Me.lblCloseTip.Text = "Siempre cierrame con el boton /X\"
         '
-        'Label4
+        'lblCountShieldedFiles
         '
-        Me.Label4.ForeColor = System.Drawing.Color.DimGray
-        Me.Label4.Location = New System.Drawing.Point(651, 118)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(219, 20)
-        Me.Label4.TabIndex = 3
-        Me.Label4.Text = "Protegiendo: 0 Archivos"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.lblCountShieldedFiles.ForeColor = System.Drawing.Color.DimGray
+        Me.lblCountShieldedFiles.Location = New System.Drawing.Point(651, 118)
+        Me.lblCountShieldedFiles.Name = "lblCountShieldedFiles"
+        Me.lblCountShieldedFiles.Size = New System.Drawing.Size(219, 20)
+        Me.lblCountShieldedFiles.TabIndex = 3
+        Me.lblCountShieldedFiles.Text = "Protegiendo: 0 Archivos"
+        Me.lblCountShieldedFiles.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'GroupBox1
         '
@@ -89,6 +89,15 @@ Partial Class Principal
         Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Opciones"
+        '
+        'btnConfig
+        '
+        Me.btnConfig.Location = New System.Drawing.Point(10, 32)
+        Me.btnConfig.Name = "btnConfig"
+        Me.btnConfig.Size = New System.Drawing.Size(144, 48)
+        Me.btnConfig.TabIndex = 6
+        Me.btnConfig.Text = "Configuracion"
+        Me.btnConfig.UseVisualStyleBackColor = True
         '
         'GroupBox2
         '
@@ -103,43 +112,35 @@ Partial Class Principal
         Me.GroupBox2.TabIndex = 5
         Me.GroupBox2.TabStop = False
         '
-        'btnConfig
+        'btnRename
         '
-        Me.btnConfig.Location = New System.Drawing.Point(10, 32)
-        Me.btnConfig.Name = "btnConfig"
-        Me.btnConfig.Size = New System.Drawing.Size(144, 48)
-        Me.btnConfig.TabIndex = 6
-        Me.btnConfig.Text = "Configuracion"
-        Me.btnConfig.UseVisualStyleBackColor = True
+        Me.btnRename.Enabled = False
+        Me.btnRename.Location = New System.Drawing.Point(575, 193)
+        Me.btnRename.Name = "btnRename"
+        Me.btnRename.Size = New System.Drawing.Size(107, 28)
+        Me.btnRename.TabIndex = 4
+        Me.btnRename.Text = "Renombrar"
+        Me.btnRename.UseVisualStyleBackColor = True
         '
-        'LinkLabel1
+        'btnOpen
         '
-        Me.LinkLabel1.AutoSize = True
-        Me.LinkLabel1.Location = New System.Drawing.Point(12, 474)
-        Me.LinkLabel1.Name = "LinkLabel1"
-        Me.LinkLabel1.Size = New System.Drawing.Size(38, 17)
-        Me.LinkLabel1.TabIndex = 6
-        Me.LinkLabel1.TabStop = True
-        Me.LinkLabel1.Text = "Guia"
+        Me.btnOpen.Enabled = False
+        Me.btnOpen.Location = New System.Drawing.Point(575, 159)
+        Me.btnOpen.Name = "btnOpen"
+        Me.btnOpen.Size = New System.Drawing.Size(107, 28)
+        Me.btnOpen.TabIndex = 3
+        Me.btnOpen.Text = "Abrir"
+        Me.btnOpen.UseVisualStyleBackColor = True
         '
-        'LinkLabel2
+        'btnRemove
         '
-        Me.LinkLabel2.AutoSize = True
-        Me.LinkLabel2.Location = New System.Drawing.Point(95, 474)
-        Me.LinkLabel2.Name = "LinkLabel2"
-        Me.LinkLabel2.Size = New System.Drawing.Size(81, 17)
-        Me.LinkLabel2.TabIndex = 7
-        Me.LinkLabel2.TabStop = True
-        Me.LinkLabel2.Text = "Informacion"
-        '
-        'ListBox1
-        '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.ItemHeight = 16
-        Me.ListBox1.Location = New System.Drawing.Point(6, 32)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(563, 292)
-        Me.ListBox1.TabIndex = 0
+        Me.btnRemove.Enabled = False
+        Me.btnRemove.Location = New System.Drawing.Point(575, 72)
+        Me.btnRemove.Name = "btnRemove"
+        Me.btnRemove.Size = New System.Drawing.Size(107, 34)
+        Me.btnRemove.TabIndex = 2
+        Me.btnRemove.Text = "Quitar"
+        Me.btnRemove.UseVisualStyleBackColor = True
         '
         'btnAdd
         '
@@ -150,46 +151,48 @@ Partial Class Principal
         Me.btnAdd.Text = "Añadir"
         Me.btnAdd.UseVisualStyleBackColor = True
         '
-        'btnRemove
+        'ListBox1
         '
-        Me.btnRemove.Location = New System.Drawing.Point(575, 72)
-        Me.btnRemove.Name = "btnRemove"
-        Me.btnRemove.Size = New System.Drawing.Size(107, 34)
-        Me.btnRemove.TabIndex = 2
-        Me.btnRemove.Text = "Quitar"
-        Me.btnRemove.UseVisualStyleBackColor = True
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.ItemHeight = 16
+        Me.ListBox1.Location = New System.Drawing.Point(6, 32)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(563, 292)
+        Me.ListBox1.TabIndex = 0
         '
-        'btnOpen
+        'lnklblGuide
         '
-        Me.btnOpen.Location = New System.Drawing.Point(575, 159)
-        Me.btnOpen.Name = "btnOpen"
-        Me.btnOpen.Size = New System.Drawing.Size(107, 28)
-        Me.btnOpen.TabIndex = 3
-        Me.btnOpen.Text = "Abrir"
-        Me.btnOpen.UseVisualStyleBackColor = True
+        Me.lnklblGuide.AutoSize = True
+        Me.lnklblGuide.Location = New System.Drawing.Point(12, 474)
+        Me.lnklblGuide.Name = "lnklblGuide"
+        Me.lnklblGuide.Size = New System.Drawing.Size(38, 17)
+        Me.lnklblGuide.TabIndex = 6
+        Me.lnklblGuide.TabStop = True
+        Me.lnklblGuide.Text = "Guia"
         '
-        'btnRename
+        'lnklblInformation
         '
-        Me.btnRename.Location = New System.Drawing.Point(575, 193)
-        Me.btnRename.Name = "btnRename"
-        Me.btnRename.Size = New System.Drawing.Size(107, 28)
-        Me.btnRename.TabIndex = 4
-        Me.btnRename.Text = "Renombrar"
-        Me.btnRename.UseVisualStyleBackColor = True
+        Me.lnklblInformation.AutoSize = True
+        Me.lnklblInformation.Location = New System.Drawing.Point(95, 474)
+        Me.lnklblInformation.Name = "lnklblInformation"
+        Me.lnklblInformation.Size = New System.Drawing.Size(81, 17)
+        Me.lnklblInformation.TabIndex = 7
+        Me.lnklblInformation.TabStop = True
+        Me.lnklblInformation.Text = "Informacion"
         '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(882, 503)
-        Me.Controls.Add(Me.LinkLabel2)
-        Me.Controls.Add(Me.LinkLabel1)
+        Me.Controls.Add(Me.lnklblInformation)
+        Me.Controls.Add(Me.lnklblGuide)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblCountShieldedFiles)
+        Me.Controls.Add(Me.lblCloseTip)
+        Me.Controls.Add(Me.lblVersion)
+        Me.Controls.Add(Me.lblTitle)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.Name = "Principal"
@@ -202,15 +205,15 @@ Partial Class Principal
 
     End Sub
 
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
+    Friend WithEvents lblTitle As Label
+    Friend WithEvents lblVersion As Label
+    Friend WithEvents lblCloseTip As Label
+    Friend WithEvents lblCountShieldedFiles As Label
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents btnConfig As Button
-    Friend WithEvents LinkLabel1 As LinkLabel
-    Friend WithEvents LinkLabel2 As LinkLabel
+    Friend WithEvents lnklblGuide As LinkLabel
+    Friend WithEvents lnklblInformation As LinkLabel
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents btnRename As Button
     Friend WithEvents btnOpen As Button

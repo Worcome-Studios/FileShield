@@ -9,8 +9,9 @@ Module General
 
     Sub AddToLog(ByVal Header As String, ByVal content As String, Optional ByVal flag As Boolean = False)
         Try
+            Dim rutaRegistro As String = DIRRoot & "\" & My.Application.Info.AssemblyName & ".log"
             Dim Overwrite As Boolean = False
-            If My.Computer.FileSystem.FileExists(DIRCommons & "\" & My.Application.Info.AssemblyName & ".log") Then
+            If My.Computer.FileSystem.FileExists(rutaRegistro) Then
                 Overwrite = True
             End If
             Dim LogContent As String = "(" & DateTime.Now.ToString("hh:mm:ss tt dd/MM/yyyy") & ")"
@@ -20,7 +21,7 @@ Module General
                 LogContent &= Header & content
             End If
             Console.WriteLine(LogContent)
-            My.Computer.FileSystem.WriteAllText(DIRCommons & "\" & My.Application.Info.AssemblyName & ".log", LogContent & vbCrLf, Overwrite)
+            My.Computer.FileSystem.WriteAllText(rutaRegistro, LogContent & vbCrLf, Overwrite)
         Catch ex As Exception
             Console.WriteLine("[" & Header & "@AddToLog]Error: " & ex.Message)
         End Try
@@ -57,7 +58,6 @@ Module StartUp
             AddToLog("[Init@StartUp]Error: ", ex.Message, True)
         End Try
     End Sub
-
     Sub CommonActions()
         Try
             If Not My.Computer.FileSystem.DirectoryExists(DIRCommons) Then
@@ -67,7 +67,6 @@ Module StartUp
             AddToLog("[CommonActions@StartUp]Error: ", ex.Message, True)
         End Try
     End Sub
-
     Function isAlreadySetSignOn() As Boolean
         Try
             If My.Computer.FileSystem.FileExists(DB_userFile) Then
@@ -79,6 +78,7 @@ Module StartUp
                 userData.Add("tmpUser")
                 userData.Add("15243")
                 userData.Add(CreatePrivateKey())
+                userData.Add("RmFsc2V8RmFsc2U=")
                 Threading.Thread.Sleep(1500)
                 appData.Add(CreatePrivateKey())
                 Threading.Thread.Sleep(1500)
@@ -189,6 +189,7 @@ Module FileShield
             Dim fileName As String = IO.Path.GetFileName(file)
             Dim fileRandom As String = CreateRandomString(IO.Path.GetFileNameWithoutExtension(file).Length)
             filesShielded.Add(fileRandom & "|" & fileName)
+            Threading.Thread.Sleep(Val(DateTime.Now.ToString("ss") & 0))
         Catch ex As Exception
             AddToLog("[AgregarItems@FileShield]Error: ", ex.Message, True)
         End Try

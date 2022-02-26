@@ -3,7 +3,8 @@
 
     Private Sub Principal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Iniciando()
-        Label2.Text = "Version: " & My.Application.Info.Version.ToString & " (" & Application.ProductVersion & ")"
+        lblVersion.Text = "Version: " & My.Application.Info.Version.ToString & " (" & Application.ProductVersion & ")"
+        lblCountShieldedFiles.Text = "Protegiendo: " & ListBox1.Items.Count & " Archivos"
     End Sub
     Private Sub Principal_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If UserClose Then
@@ -20,7 +21,7 @@
     Private Sub BtnAñadir_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         'Testeado! funciona.
         Dim openFile As New OpenFileDialog
-        openFile.Filter = ""
+        openFile.Filter = "Todos los archivos (*.*)|*.*"
         openFile.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
         openFile.Multiselect = True
         openFile.Title = "Abrir archivo/s..."
@@ -39,8 +40,8 @@
             'Testeado! funciona.
             Dim fileName As String = filesShielded(ListBox1.SelectedIndex).ToString.Split("|")(1)
             Dim fileNameRand As String = filesShielded(ListBox1.SelectedIndex).ToString.Split("|")(0)
-            If MessageBox.Show("¿Seguro que desea eliminar el archivo '" & fileName & "'?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-                My.Computer.FileSystem.DeleteFile(DIRRoot & "\" & fileName)
+            If MessageBox.Show("¿Seguro que desea quitar la proteccion al archivo '" & fileName & "'?", "Remover", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                'My.Computer.FileSystem.DeleteFile(DIRRoot & "\" & fileName)
                 filesShielded.RemoveAt(ListBox1.SelectedIndex)
                 ListBox1.Items.RemoveAt(ListBox1.SelectedIndex)
                 ListarItems()
@@ -73,10 +74,16 @@
         End Try
     End Sub
 
-    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnklblGuide.LinkClicked
         Process.Start("http://worcomestudios.comule.com/WSS_Structure/AppHelper/AboutApps/WorFileShield.html")
     End Sub
-    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
+    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnklblInformation.LinkClicked
         Process.Start("http://worcomestudios.comule.com/WSS_Structure/AppHelper/WorFileShield.html")
+    End Sub
+
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+        btnRemove.Enabled = True
+        btnOpen.Enabled = True
+        btnRename.Enabled = True
     End Sub
 End Class

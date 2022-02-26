@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System
+Imports System.IO
 Imports System.Security.Cryptography
 Imports System.Text
 Module CryptoActions
@@ -61,6 +62,17 @@ Module CryptoActions
             Desencriptar = UnicodeEncoding.UTF8.GetString(desencrypta.TransformFinalBlock(buff, 0, buff.Length))
         End If
         Return Desencriptar
+    End Function
+
+    Function EncodeBase64(ByVal contenido As String) As String
+        Dim data As Byte() = UTF8Encoding.UTF8.GetBytes(contenido)
+        Dim strB64Encoded As String = Convert.ToBase64String(data)
+        Return strB64Encoded
+    End Function
+    Function DecodeBase64(ByVal contenido As String) As String
+        Dim data As Byte() = Convert.FromBase64String(contenido)
+        Dim strB64Decoded As String = UTF8Encoding.UTF8.GetString(data)
+        Return strB64Decoded
     End Function
 
     Sub CallEncrypt(ByVal FileIN As String, ByVal FileOUT As String, ByVal key As String)
