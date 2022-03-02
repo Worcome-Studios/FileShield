@@ -1,5 +1,6 @@
 ﻿Public Class Config
     Public ConfigData As New ArrayList
+    Public AccessKeys As String
 
     Private Sub Config_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadConfig()
@@ -34,16 +35,17 @@
                 Chb_LogIn_LimitStarts.Checked = ConfigData(5)
                 Nud_LogIn_Starts.Value = ConfigData(6)
                 Chb_LogIn_LockAtMaxStarts.Checked = ConfigData(7)
-                Chb_KeyAccess_AllowAccessKeys.Checked = ConfigData(8)
-                Rb_KeyAccess_StartFS.Checked = ConfigData(9)
-                Rb_KeyAccess_StartFSAndJumpSignON.Checked = ConfigData(10)
-                Chb_Lock_AllowAutoLock.Checked = ConfigData(11)
-                Rb_Lock_WithTime.Checked = ConfigData(12)
-                Nud_Lock_HH.Value = ConfigData(13)
-                Nud_Lock_MM.Value = ConfigData(14)
-                Nud_Lock_SS.Value = ConfigData(15)
-                Rb_Lock_WithAfk.Checked = ConfigData(16)
-                Nud_Lock_AfkSS.Value = ConfigData(17)
+                AccessKeys = ConfigData(8)
+                Chb_KeyAccess_AllowAccessKeys.Checked = ConfigData(9)
+                Rb_KeyAccess_StartFS.Checked = ConfigData(10)
+                Rb_KeyAccess_StartFSAndJumpSignON.Checked = ConfigData(11)
+                Chb_Lock_AllowAutoLock.Checked = ConfigData(12)
+                Rb_Lock_WithTime.Checked = ConfigData(13)
+                Nud_Lock_HH.Value = ConfigData(14)
+                Nud_Lock_MM.Value = ConfigData(15)
+                Nud_Lock_SS.Value = ConfigData(16)
+                Rb_Lock_WithAfk.Checked = ConfigData(17)
+                Nud_Lock_AfkSS.Value = ConfigData(18)
             End If
 
         Catch ex As Exception
@@ -62,6 +64,7 @@
                 Chb_LogIn_LimitStarts.Checked & "|" &
                 Nud_LogIn_Starts.Value & "|" &
                 Chb_LogIn_LockAtMaxStarts.Checked & "|" &
+                AccessKeys & "|" & 'Guarda las llaves de acceso
                 Chb_KeyAccess_AllowAccessKeys.Checked & "|" &
                 Rb_KeyAccess_StartFS.Checked & "|" &
                 Rb_KeyAccess_StartFSAndJumpSignON.Checked & "|" &
@@ -80,5 +83,26 @@
         Catch ex As Exception
             AddToLog("[SaveConfig@Config]Error: ", ex.Message, True)
         End Try
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim keyUserTo = InputBox("Ingrese el nombre de usuario para vincular la llave", "Llave de Acceso", Environment.UserName)
+        If keyUserTo <> Nothing Then
+            Dim AccessKey As String = keyUserTo & ";" & DateTime.Now.ToString() & ";" & Rb_KeyAccess_StartFS.Checked & ";" & Rb_KeyAccess_StartFSAndJumpSignON.Checked
+            Dim LnkFilePath As String = Environment.GetFolderPath(Environment.SpecialFolder.Desktop & "\" & keyUserTo & "_FileShield_Key.lnk")
+            If My.Computer.FileSystem.FileExists(LnkFilePath) Then
+                My.Computer.FileSystem.DeleteFile(LnkFilePath)
+            End If
+            Dim WSHShell As Object = CreateObject("WScript.Shell")
+            Dim Shortcut As Object
+            Shortcut = WSHShell.CreateShortcut(LnkFilePath)
+            Shortcut.IconLocation = Application.ExecutablePath & ",0"
+            Shortcut.TargetPath = Application.ExecutablePath
+            Shortcut.Arguments = EncodeBase64(AccessKey)
+            Shortcut.WindowStyle = 1
+            Shortcut.Description = "Access key for " & keyUserTo
+            Shortcut.Save()
+            AccessKeys &= AccessKey & "<>"
+        End If
     End Sub
 End Class
