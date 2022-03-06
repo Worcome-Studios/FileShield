@@ -89,7 +89,7 @@
         Dim keyUserTo = InputBox("Ingrese el nombre de usuario para vincular la llave", "Llave de Acceso", Environment.UserName)
         If keyUserTo <> Nothing Then
             Dim AccessKey As String = keyUserTo & ";" & DateTime.Now.ToString() & ";" & Rb_KeyAccess_StartFS.Checked & ";" & Rb_KeyAccess_StartFSAndJumpSignON.Checked
-            Dim LnkFilePath As String = Environment.GetFolderPath(Environment.SpecialFolder.Desktop & "\" & keyUserTo & "_FileShield_Key.lnk")
+            Dim LnkFilePath As String = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) & "\" & keyUserTo & "_FileShield_Key.lnk"
             If My.Computer.FileSystem.FileExists(LnkFilePath) Then
                 My.Computer.FileSystem.DeleteFile(LnkFilePath)
             End If
@@ -98,11 +98,37 @@
             Shortcut = WSHShell.CreateShortcut(LnkFilePath)
             Shortcut.IconLocation = Application.ExecutablePath & ",0"
             Shortcut.TargetPath = Application.ExecutablePath
-            Shortcut.Arguments = EncodeBase64(AccessKey)
+            If Not Rb_KeyAccess_StartFS.Checked Then
+                Shortcut.Arguments = "KEY=" & EncodeBase64(AccessKey)
+                Shortcut.Description = "Access key for " & keyUserTo
+            End If
             Shortcut.WindowStyle = 1
-            Shortcut.Description = "Access key for " & keyUserTo
             Shortcut.Save()
-            AccessKeys &= AccessKey & "<>"
+            AccessKeys &= AccessKey & "#"
         End If
+    End Sub
+
+    Private Sub Chb_KeyAccess_AllowAccessKeys_CheckedChanged(sender As Object, e As EventArgs) Handles Chb_KeyAccess_AllowAccessKeys.CheckedChanged
+        Rb_KeyAccess_StartFS.Enabled = Chb_KeyAccess_AllowAccessKeys.Checked
+        Rb_KeyAccess_StartFSAndJumpSignON.Enabled = Chb_KeyAccess_AllowAccessKeys.Checked
+        Button1.Enabled = Chb_KeyAccess_AllowAccessKeys.Checked
+    End Sub
+
+    Private Sub Chb_Lock_AllowAutoLock_CheckedChanged(sender As Object, e As EventArgs) Handles Chb_Lock_AllowAutoLock.CheckedChanged
+        Rb_Lock_WithTime.Enabled = Chb_Lock_AllowAutoLock.Checked
+        Rb_Lock_WithAfk.Enabled = Chb_Lock_AllowAutoLock.Checked
+    End Sub
+
+    Private Sub Rb_Lock_WithTime_CheckedChanged(sender As Object, e As EventArgs) Handles Rb_Lock_WithTime.CheckedChanged
+        Label3.Enabled = Rb_Lock_WithTime.Checked
+        Nud_Lock_HH.Enabled = Rb_Lock_WithTime.Checked
+        Nud_Lock_MM.Enabled = Rb_Lock_WithTime.Checked
+        Nud_Lock_SS.Enabled = Rb_Lock_WithTime.Checked
+        Label4.Enabled = Rb_Lock_WithTime.Checked
+    End Sub
+
+    Private Sub Rb_Lock_WithAfk_CheckedChanged(sender As Object, e As EventArgs) Handles Rb_Lock_WithAfk.CheckedChanged
+        Label5.Enabled = Rb_Lock_WithAfk.Checked
+        Nud_Lock_AfkSS.Enabled = Rb_Lock_WithAfk.Checked
     End Sub
 End Class

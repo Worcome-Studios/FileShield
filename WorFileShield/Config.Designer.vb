@@ -264,6 +264,7 @@ Partial Class Config
         '
         'Button1
         '
+        Me.Button1.Enabled = False
         Me.Button1.Location = New System.Drawing.Point(85, 102)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(95, 33)
@@ -274,6 +275,7 @@ Partial Class Config
         'Rb_KeyAccess_StartFSAndJumpSignON
         '
         Me.Rb_KeyAccess_StartFSAndJumpSignON.AutoSize = True
+        Me.Rb_KeyAccess_StartFSAndJumpSignON.Enabled = False
         Me.Rb_KeyAccess_StartFSAndJumpSignON.Location = New System.Drawing.Point(25, 65)
         Me.Rb_KeyAccess_StartFSAndJumpSignON.Name = "Rb_KeyAccess_StartFSAndJumpSignON"
         Me.Rb_KeyAccess_StartFSAndJumpSignON.Size = New System.Drawing.Size(177, 17)
@@ -285,6 +287,7 @@ Partial Class Config
         'Rb_KeyAccess_StartFS
         '
         Me.Rb_KeyAccess_StartFS.AutoSize = True
+        Me.Rb_KeyAccess_StartFS.Enabled = False
         Me.Rb_KeyAccess_StartFS.Location = New System.Drawing.Point(25, 42)
         Me.Rb_KeyAccess_StartFS.Name = "Rb_KeyAccess_StartFS"
         Me.Rb_KeyAccess_StartFS.Size = New System.Drawing.Size(101, 17)
@@ -333,6 +336,7 @@ Partial Class Config
         '
         'Nud_Lock_AfkSS
         '
+        Me.Nud_Lock_AfkSS.Enabled = False
         Me.Nud_Lock_AfkSS.Location = New System.Drawing.Point(131, 164)
         Me.Nud_Lock_AfkSS.Maximum = New Decimal(New Integer() {3000, 0, 0, 0})
         Me.Nud_Lock_AfkSS.Name = "Nud_Lock_AfkSS"
@@ -343,6 +347,7 @@ Partial Class Config
         'Label5
         '
         Me.Label5.AutoSize = True
+        Me.Label5.Enabled = False
         Me.Label5.Location = New System.Drawing.Point(46, 166)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(191, 13)
@@ -351,6 +356,7 @@ Partial Class Config
         '
         'Label4
         '
+        Me.Label4.Enabled = False
         Me.Label4.Location = New System.Drawing.Point(49, 101)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(171, 22)
@@ -360,6 +366,7 @@ Partial Class Config
         '
         'Nud_Lock_SS
         '
+        Me.Nud_Lock_SS.Enabled = False
         Me.Nud_Lock_SS.Location = New System.Drawing.Point(167, 78)
         Me.Nud_Lock_SS.Name = "Nud_Lock_SS"
         Me.Nud_Lock_SS.Size = New System.Drawing.Size(53, 20)
@@ -367,6 +374,7 @@ Partial Class Config
         '
         'Nud_Lock_MM
         '
+        Me.Nud_Lock_MM.Enabled = False
         Me.Nud_Lock_MM.Location = New System.Drawing.Point(108, 78)
         Me.Nud_Lock_MM.Name = "Nud_Lock_MM"
         Me.Nud_Lock_MM.Size = New System.Drawing.Size(53, 20)
@@ -375,6 +383,7 @@ Partial Class Config
         '
         'Nud_Lock_HH
         '
+        Me.Nud_Lock_HH.Enabled = False
         Me.Nud_Lock_HH.Location = New System.Drawing.Point(49, 78)
         Me.Nud_Lock_HH.Name = "Nud_Lock_HH"
         Me.Nud_Lock_HH.Size = New System.Drawing.Size(53, 20)
@@ -383,6 +392,7 @@ Partial Class Config
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.Enabled = False
         Me.Label3.Location = New System.Drawing.Point(46, 62)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(139, 13)
@@ -392,6 +402,7 @@ Partial Class Config
         'Rb_Lock_WithAfk
         '
         Me.Rb_Lock_WithAfk.AutoSize = True
+        Me.Rb_Lock_WithAfk.Enabled = False
         Me.Rb_Lock_WithAfk.Location = New System.Drawing.Point(25, 146)
         Me.Rb_Lock_WithAfk.Name = "Rb_Lock_WithAfk"
         Me.Rb_Lock_WithAfk.Size = New System.Drawing.Size(98, 17)
@@ -403,6 +414,7 @@ Partial Class Config
         '
         Me.Rb_Lock_WithTime.AutoSize = True
         Me.Rb_Lock_WithTime.Checked = True
+        Me.Rb_Lock_WithTime.Enabled = False
         Me.Rb_Lock_WithTime.Location = New System.Drawing.Point(25, 42)
         Me.Rb_Lock_WithTime.Name = "Rb_Lock_WithTime"
         Me.Rb_Lock_WithTime.Size = New System.Drawing.Size(107, 17)
