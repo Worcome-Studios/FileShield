@@ -75,6 +75,17 @@ Module CryptoActions
         Return strB64Decoded
     End Function
 
+    Function GenerateMD5(ByVal SourceText As String) As String
+        'Create an encoding object to ensure the encoding standard for the source text
+        Dim Ue As New UTF8Encoding()
+        'Retrieve a byte array based on the source text
+        Dim ByteSourceText() As Byte = Ue.GetBytes(SourceText)
+        'Compute the hash value from the source
+        Dim ByteHash() As Byte = hashmd5.ComputeHash(ByteSourceText)
+        'And convert it to String format for return
+        Return Convert.ToBase64String(ByteHash)
+    End Function
+
     Sub CallEncrypt(ByVal FileIN As String, ByVal FileOUT As String, ByVal key As String)
         Try
             Dim buffer As Byte()
