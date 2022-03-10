@@ -18,7 +18,7 @@
     Sub LoadConfig()
         Try
             ConfigData.Clear()
-            Dim Config As String() = DecodeBase64(userData(3)).Split("|")
+            Dim Config As String() = DecodeBase64(userData(4)).Split("|")
             For Each item As String In Config
                 ConfigData.Add(item)
             Next
@@ -46,6 +46,13 @@
                 Nud_Lock_SS.Value = ConfigData(16)
                 Rb_Lock_WithAfk.Checked = ConfigData(17)
                 Nud_Lock_AfkSS.Value = ConfigData(18)
+            End If
+
+            'Modo compartir (bloquea las configuraciones)
+            If userData(2) <> Environment.UserName Then
+                If Boolean.Parse(ConfigData(0)) Then
+                    TabControl1.Enabled = False
+                End If
             End If
 
         Catch ex As Exception
@@ -76,7 +83,7 @@
                 Rb_Lock_WithAfk.Checked & "|" &
                 Nud_Lock_AfkSS.Value
 
-            userData(3) = EncodeBase64(Config)
+            userData(4) = EncodeBase64(Config)
 
             SaveData()
             LoadConfig()
@@ -130,5 +137,13 @@
     Private Sub Rb_Lock_WithAfk_CheckedChanged(sender As Object, e As EventArgs) Handles Rb_Lock_WithAfk.CheckedChanged
         Label5.Enabled = Rb_Lock_WithAfk.Checked
         Nud_Lock_AfkSS.Enabled = Rb_Lock_WithAfk.Checked
+    End Sub
+
+    Private Sub Chb_General_ShareMode_CheckedChanged(sender As Object, e As EventArgs) Handles Chb_General_ShareMode.CheckedChanged
+        ConfigData(0) = Chb_General_ShareMode.Checked
+    End Sub
+
+    Private Sub Chb_General_NetworkMode_CheckedChanged(sender As Object, e As EventArgs) Handles Chb_General_NetworkMode.CheckedChanged
+        ConfigData(1) = Chb_General_NetworkMode.Checked
     End Sub
 End Class

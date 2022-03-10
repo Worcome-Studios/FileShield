@@ -77,6 +77,7 @@ Module StartUp
                 'Sin registrar
                 userData.Add("tmpUser")
                 userData.Add("15243")
+                userData.Add(Environment.UserName)
                 userData.Add(CreatePrivateKey())
                 userData.Add("RmFsc2V8RmFsc2U=")
                 Threading.Thread.Sleep(1500)
@@ -202,7 +203,7 @@ Module FileShield
             End If
             Dim items As String = Nothing
             For Each item As String In filesShielded
-                items &= Encriptar(item, userData(2)) & vbCrLf
+                items &= Encriptar(item, userData(3)) & vbCrLf
             Next
             My.Computer.FileSystem.WriteAllText(DB_filesFile, items, False)
         Catch ex As Exception
@@ -214,7 +215,7 @@ Module FileShield
             If My.Computer.FileSystem.FileExists(DB_filesFile) Then
                 filesShielded.Clear()
                 For Each item As String In IO.File.ReadLines(DB_filesFile)
-                    filesShielded.Add(Desencriptar(item, userData(2)))
+                    filesShielded.Add(Desencriptar(item, userData(3)))
                 Next
             End If
         Catch ex As Exception
@@ -233,7 +234,7 @@ Module FileShield
                 If My.Computer.FileSystem.FileExists(itemSaliente) Then
                     My.Computer.FileSystem.DeleteFile(itemSaliente)
                 End If
-                CallEncrypt(itemEntrante, itemSaliente, userData(2))
+                CallEncrypt(itemEntrante, itemSaliente, userData(3))
                 My.Computer.FileSystem.DeleteFile(itemEntrante)
             Next
         Catch ex As Exception
@@ -251,7 +252,7 @@ Module FileShield
                 If My.Computer.FileSystem.FileExists(itemSaliente) Then
                     My.Computer.FileSystem.DeleteFile(itemSaliente)
                 End If
-                CallDecrypt(itemEntrante, itemSaliente, userData(2))
+                CallDecrypt(itemEntrante, itemSaliente, userData(3))
                 My.Computer.FileSystem.DeleteFile(itemEntrante)
             Next
         Catch ex As Exception
