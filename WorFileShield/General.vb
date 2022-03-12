@@ -6,6 +6,7 @@ Module General
     'Public DIRCommons As String = DIRRoot & "\Apps\" & My.Application.Info.AssemblyName
     Public DIRRoot As String = Application.StartupPath
     Public DIRCommons As String = DIRRoot & "\" & My.Application.Info.ProductName
+    Public IsNetworkLocation As Boolean = False
 
     Sub AddToLog(ByVal Header As String, ByVal content As String, Optional ByVal flag As Boolean = False)
         Try
@@ -72,6 +73,7 @@ Module StartUp
             If My.Computer.FileSystem.FileExists(DB_userFile) Then
                 'Ya registrado
                 LoadData()
+                Config.LoadConfig()
                 Return True
             Else
                 'Sin registrar
@@ -151,6 +153,7 @@ End Module
 Module FileShield
     Dim DB_filesFile As String = DIRCommons & "\files.db"
     Public filesShielded As New ArrayList
+    Dim folderName As String = "C:\Users\" & Environment.UserName & "\AppData\Local\Temp\" & CreateRandomString(Len(Environment.UserName))
 
     Sub Iniciando()
         Try
@@ -163,8 +166,13 @@ Module FileShield
     End Sub
     Sub Terminando()
         Try
-            CifrarItems()
-            GuardarItems()
+            If Not IsNetworkLocation Then
+                CifrarItems()
+                GuardarItems()
+            End If
+            If My.Computer.FileSystem.DirectoryExists(folderName) Then
+                My.Computer.FileSystem.DeleteDirectory(folderName, FileIO.DeleteDirectoryOption.DeleteAllContents)
+            End If
         Catch ex As Exception
             AddToLog("[Terminando@FileShield]Error: ", ex.Message, True)
         End Try
@@ -187,10 +195,12 @@ Module FileShield
 
     Sub AgregarItems(ByVal file As String)
         Try
-            Dim fileName As String = IO.Path.GetFileName(file)
-            Dim fileRandom As String = CreateRandomString(IO.Path.GetFileNameWithoutExtension(file).Length)
-            filesShielded.Add(fileRandom & "|" & fileName)
-            Threading.Thread.Sleep(Val(DateTime.Now.ToString("ss") & 0))
+            If Not IsNetworkLocation Then
+                Dim fileName As String = IO.Path.GetFileName(file)
+                Dim fileRandom As String = CreateRandomString(IO.Path.GetFileNameWithoutExtension(file).Length)
+                filesShielded.Add(fileRandom & "|" & fileName)
+                Threading.Thread.Sleep(Val(DateTime.Now.ToString("ss") & 0))
+            End If
         Catch ex As Exception
             AddToLog("[AgregarItems@FileShield]Error: ", ex.Message, True)
         End Try
@@ -198,14 +208,16 @@ Module FileShield
 
     Sub GuardarItems()
         Try
-            If My.Computer.FileSystem.FileExists(DB_filesFile) Then
-                My.Computer.FileSystem.DeleteFile(DB_filesFile)
+            If Not IsNetworkLocation Then
+                If My.Computer.FileSystem.FileExists(DB_filesFile) Then
+                    My.Computer.FileSystem.DeleteFile(DB_filesFile)
+                End If
+                Dim items As String = Nothing
+                For Each item As String In filesShielded
+                    items &= Encriptar(item, userData(3)) & vbCrLf
+                Next
+                My.Computer.FileSystem.WriteAllText(DB_filesFile, items, False)
             End If
-            Dim items As String = Nothing
-            For Each item As String In filesShielded
-                items &= Encriptar(item, userData(3)) & vbCrLf
-            Next
-            My.Computer.FileSystem.WriteAllText(DB_filesFile, items, False)
         Catch ex As Exception
             AddToLog("[GuardarItems@FileShield]Error: ", ex.Message, True)
         End Try
@@ -244,17 +256,28 @@ Module FileShield
     Sub DescifrarItems()
         'Testeado! funciona.
         Try
+            If Not My.Computer.FileSystem.DirectoryExists(folderName) Then
+                My.Computer.FileSystem.CreateDirectory(folderName)
+            End If
             For Each item As String In filesShielded
                 Dim fileName As String = item.Split("|")(1)
                 Dim fileNameRand As String = item.Split("|")(0)
                 Dim itemEntrante As String = DIRCommons & "\" & fileNameRand
                 Dim itemSaliente As String = DIRRoot & "\" & fileName
+                If IsNetworkLocation Then
+                    itemSaliente = folderName & "\" & fileName
+                End If
                 If My.Computer.FileSystem.FileExists(itemSaliente) Then
                     My.Computer.FileSystem.DeleteFile(itemSaliente)
                 End If
                 CallDecrypt(itemEntrante, itemSaliente, userData(3))
-                My.Computer.FileSystem.DeleteFile(itemEntrante)
+                If Not IsNetworkLocation Then
+                    My.Computer.FileSystem.DeleteFile(itemEntrante)
+                End If
             Next
+            If IsNetworkLocation Then
+                Process.Start(folderName)
+            End If
         Catch ex As Exception
             AddToLog("[DescifrarItems@FileShield]Error: ", ex.Message, True)
         End Try

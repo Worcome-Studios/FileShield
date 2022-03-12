@@ -82,8 +82,10 @@
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
-        btnRemove.Enabled = True
-        btnOpen.Enabled = True
-        btnRename.Enabled = True
+        If Not IsNetworkLocation Then
+            btnRemove.Enabled = True
+            btnOpen.Enabled = True
+            btnRename.Enabled = True
+        End If
     End Sub
 End Class

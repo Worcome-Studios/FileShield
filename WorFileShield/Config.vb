@@ -29,6 +29,7 @@
             Else
                 Chb_General_ShareMode.Checked = ConfigData(0)
                 Chb_General_NetworkMode.Checked = ConfigData(1)
+                IsNetworkLocation = ConfigData(1)
                 Chb_LogIn_AllowMaxTrys.Checked = ConfigData(2)
                 Nud_LogIn_Trys.Value = ConfigData(3)
                 Chb_LogIn_DeleteAtMaxTrys.Checked = ConfigData(4)
@@ -48,11 +49,18 @@
                 Nud_Lock_AfkSS.Value = ConfigData(18)
             End If
 
-            'Modo compartir (bloquea las configuraciones)
+            'Modo compartir y Modo ubicacion de red
             If userData(2) <> Environment.UserName Then
                 If Boolean.Parse(ConfigData(0)) Then
                     TabControl1.Enabled = False
                 End If
+                If Boolean.Parse(ConfigData(1)) Then
+                    Chb_General_NetworkMode.Enabled = False
+                    Principal.GroupBox1.Enabled = False
+                    Principal.GroupBox2.Enabled = False
+                End If
+            Else
+                IsNetworkLocation = False
             End If
 
         Catch ex As Exception
