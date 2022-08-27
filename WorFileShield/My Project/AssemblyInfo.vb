@@ -9,17 +9,17 @@ Imports System.Runtime.InteropServices
 
 ' Revisar los valores de los atributos del ensamblado
 
-<Assembly: AssemblyTitle("Protector de archivos portable")>
-<Assembly: AssemblyDescription("Protector de archivos portable")>
+<Assembly: AssemblyTitle("Protector de Archivos Portatil")>
+<Assembly: AssemblyDescription("Fast File Protector")>
 <Assembly: AssemblyCompany("Worcome Studios")>
-<Assembly: AssemblyProduct("FileShield")>
-<Assembly: AssemblyCopyright("Copyright © 2022 Worcome Studios. Algunos derechos reservados.")>
+<Assembly: AssemblyProduct("FileShied")>
+<Assembly: AssemblyCopyright("Copyright © 2020 Worcome Studios. Todos los Derechos Reservados")>
 <Assembly: AssemblyTrademark("Worcome Studios")>
 
 <Assembly: ComVisible(False)>
 
 'El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-<Assembly: Guid("cea76b55-996e-43f5-a814-b653424f39ca")>
+<Assembly: Guid("b5ed6fae-20a7-4b38-8e30-db28d4d589c0")>
 
 ' La información de versión de un ensamblado consta de los cuatro valores siguientes:
 '
@@ -32,6 +32,6 @@ Imports System.Runtime.InteropServices
 ' mediante el carácter '*', como se muestra a continuación:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("2.0.0.0")>
-<Assembly: AssemblyFileVersion("2.0.0.0")>
+<Assembly: AssemblyVersion("1.7.0.0")>
+<Assembly: AssemblyFileVersion("30.07.20.20")>
 <Assembly: NeutralResourcesLanguage("es")>

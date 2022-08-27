@@ -4,15 +4,35 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C10A66A3-8EA1-4EC1-AACD-6231D15AC1E9}</ProjectGuid>
+    <ProjectGuid>{E01C5688-DE60-48E0-8CB3-8C0671F465E7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>WorFileShield.My.MyApplication</StartupObject>
-    <RootNamespace>WorFileShield</RootNamespace>
+    <StartupObject>Wor_FileShield.My.MyApplication</StartupObject>
+    <RootNamespace>Wor_FileShield</RootNamespace>
     <AssemblyName>WorFileShield</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>es</TargetCulture>
+    <ProductName>Wor FileShield</ProductName>
+    <PublisherName>Worcome Studios</PublisherName>
+    <SuiteName>Worcome Apps</SuiteName>
+    <ApplicationRevision>20</ApplicationRevision>
+    <ApplicationVersion>22.03.20.20</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,17 +66,20 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>WorcomeSimplyAppIcon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -69,9 +92,46 @@
     <Import Include="System.Windows.Forms" />
     <Import Include="System.Linq" />
     <Import Include="System.Xml.Linq" />
-    <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangeCryptoKey.designer.vb">
+      <DependentUpon>ChangeCryptoKey.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeCryptoKey.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config.Designer.vb">
+      <DependentUpon>Config.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Config.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Debugger.Designer.vb">
+      <DependentUpon>Debugger.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Debugger.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Idioma.vb" />
+    <Compile Include="Loggs.Designer.vb">
+      <DependentUpon>Loggs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Loggs.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.vb">
+      <DependentUpon>Login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.vb">
+      <DependentUpon>Main.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -89,6 +149,24 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ChangeCryptoKey.resx">
+      <DependentUpon>ChangeCryptoKey.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config.resx">
+      <DependentUpon>Config.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Debugger.resx">
+      <DependentUpon>Debugger.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Loggs.resx">
+      <DependentUpon>Loggs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -106,7 +184,16 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WorcomeSimplyAppIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
